@@ -1,5 +1,5 @@
 {
-  "name": "practice",
+  "name": "mernpractice",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Pushpagtm/Practice.git"
+    "url": "git+https://github.com/Pushpagtm/MernPractice.git"
   },
   "author": "Puspa",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Pushpagtm/Practice/issues"
+    "url": "https://github.com/Pushpagtm/MernPractice/issues"
   },
-  "homepage": "https://github.com/Pushpagtm/Practice#readme",
+  "homepage": "https://github.com/Pushpagtm/MernPractice#readme",
   "devDependencies": {
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3"
