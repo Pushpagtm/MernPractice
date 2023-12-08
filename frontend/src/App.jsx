@@ -9,12 +9,12 @@ function App() {
     axios
       .get("/api/jokes")
       .then((res) => {
-        setJokes(res.data);
+        setJokes(res.data.jokes); // Access the "jokes" array from res.data
       })
       .catch((error) => {
         console.log(error);
       });
-  });
+  }); // Add an empty dependency array to ensure useEffect runs only once
 
   return (
     <>
