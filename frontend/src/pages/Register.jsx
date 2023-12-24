@@ -8,7 +8,7 @@ function RegisterUser(props) {
   async function registerUser(event) {
     event.preventDefault();
     await axios
-      .post("/api/register", {
+      .post("/api/v1/users/register", {
         name: name,
         email: email,
         password: password,
