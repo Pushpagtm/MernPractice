@@ -9,13 +9,12 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="/register" exact component={RegisterUser} />
-          <Route path="/create" exact component={CreateUser} />
-          <Route path="/update" exact component={UpdateUser} />
-          <Route path="/users" exact component={Users} />
+          <Route path="/" element={<Users />} />
+          <Route path="/create" element={<CreateUser />} />
+          <Route path="/update" element={<UpdateUser />} />
         </Routes>
       </Router>
-      <RegisterUser />
+      {/* <RegisterUser /> */}
     </div>
   );
 }
