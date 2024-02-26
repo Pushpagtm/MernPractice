@@ -1,15 +1,33 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function CreateUser() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState("");
+  async function createUser(event) {
+    event.preventDefault();
+    await axios
+      .post("/api/v1/users/create", {
+        name,
+        email,
+        age,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  }
   return (
     <div>
-      <form>
+      <form onSubmit={createUser}>
         <div className="relative mb-6" data-te-input-wrapper-init>
           <input
             type="text"
             className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
             id="exampleFormControlInput2"
             placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <label
             for="exampleFormControlInput2"
@@ -24,6 +42,8 @@ function CreateUser() {
             className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
             id="exampleFormControlInput2"
             placeholder="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <label
             for="exampleFormControlInput2"
@@ -39,6 +59,8 @@ function CreateUser() {
             className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
             id="exampleFormControlInput22"
             placeholder="Age"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
           />
           <label
             for="exampleFormControlInput22"
