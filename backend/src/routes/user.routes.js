@@ -6,6 +6,8 @@ import {
   registerUser,
 } from "../controllers/user.controller.js";
 import {
+  DeleteUserId,
+  UpdateUserId,
   createUser,
   fetchUser,
   fetchUserId,
@@ -33,4 +35,7 @@ router.route("/change-password").post(verifyJWT, changeCurrentPassword);
 router.route("/create").post(createUser);
 router.route("/get").get(fetchUser);
 router.route("/get/:id").get(fetchUserId);
+router.route("/update/:id").put(UpdateUserId);
+router.route("/delete/:id").delete(DeleteUserId);
+
 export default router;

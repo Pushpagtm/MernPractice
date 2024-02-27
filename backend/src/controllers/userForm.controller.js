@@ -50,4 +50,30 @@ const fetchUserId = asyncHandler(async (req, res) => {
     .status(201)
     .json(new ApiResponse(200, userFetchId, "user fetched sucessfuly"));
 });
-export { createUser, fetchUser, fetchUserId };
+const UpdateUserId = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    throw new ApiError(400, "User ID is required");
+  }
+  const userUpdateId = await UserFormModel.findByIdAndUpdate(id, req.body);
+  if (!userUpdateId) {
+    throw new ApiError(404, "user not found");
+  }
+  return res
+    .status(201)
+    .json(new ApiResponse(200, userFetchId, "user updated sucessfuly"));
+});
+const DeleteUserId = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    throw new ApiError(400, "User ID is required");
+  }
+  const userDeleteId = await UserFormModel.findByIdAndDelete(id);
+  if (!userDeleteId) {
+    throw new ApiError(404, "user not found");
+  }
+  return res
+    .status(201)
+    .json(new ApiResponse(200, userFetchId, "user updated sucessfuly"));
+});
+export { createUser, fetchUser, fetchUserId, UpdateUserId, DeleteUserId };
