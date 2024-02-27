@@ -5,7 +5,11 @@ import {
   logoutUser,
   registerUser,
 } from "../controllers/user.controller.js";
-import { createUser } from "../controllers/userForm.controller.js";
+import {
+  createUser,
+  fetchUser,
+  fetchUserId,
+} from "../controllers/userForm.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 // import { upload } from "../middlewares/multer.middleware.js";
 const router = Router();
@@ -27,4 +31,6 @@ router.route("/login").post(loginUser);
 router.route("/logout").post(verifyJWT, logoutUser);
 router.route("/change-password").post(verifyJWT, changeCurrentPassword);
 router.route("/create").post(createUser);
+router.route("/get").get(fetchUser);
+router.route("/get/:id").get(fetchUserId);
 export default router;

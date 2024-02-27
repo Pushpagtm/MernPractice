@@ -26,4 +26,28 @@ const createUser = asyncHandler(async (req, res) => {
     .status(201)
     .json(new ApiResponse(200, userForm, "User created Successfully"));
 });
-export { createUser };
+const fetchUser = asyncHandler(async (req, res) => {
+  const userFetch = await UserFormModel.find({});
+
+  if (!userFetch || userFetch.length === 0) {
+    throw new ApiError(500, "Something went wrong while fetching the user");
+  }
+
+  return res
+    .status(201)
+    .json(new ApiResponse(200, userFetch, "User fetched Successfully"));
+});
+const fetchUserId = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    throw new ApiError(400, "User ID is required");
+  }
+  const userFetchId = await UserFormModel.findById({ _id: id });
+  if (!userFetchId) {
+    throw new ApiError(404, "user not found");
+  }
+  return res
+    .status(201)
+    .json(new ApiResponse(200, userFetchId, "user fetched sucessfuly"));
+});
+export { createUser, fetchUser, fetchUserId };
