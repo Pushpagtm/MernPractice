@@ -42,7 +42,7 @@ const fetchUserId = asyncHandler(async (req, res) => {
   if (!id) {
     throw new ApiError(400, "User ID is required");
   }
-  const userFetchId = await UserFormModel.findById({ _id: id });
+  const userFetchId = await UserFormModel.findById(id);
   if (!userFetchId) {
     throw new ApiError(404, "user not found");
   }
