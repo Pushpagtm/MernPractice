@@ -9,6 +9,32 @@ const getAllPost = asyncHandler(async (req, res) => {
     .status(201)
     .json(new ApiResponse(200, posts, "All posts fetched Successfully"));
 });
+//get recent post
+const getRecentPost = asyncHandler(async (req, res) => {
+  const recentPost = await Post.find().sort({ date: -1 }).limit(5);
+  return res
+    .status(201)
+    .json(
+      new ApiResponse(
+        200,
+        recentPost,
+        "All recent Post are fetched sucessfully"
+      )
+    );
+});
+//get featured post
+const getFeaturedPost = asyncHandler(async (req, res) => {
+  const featuredPost = await Post.find({ featured: true });
+  return res
+    .status(201)
+    .json(
+      new ApiResponse(
+        200,
+        featuredPost,
+        "All featured Post are fetched sucessfully"
+      )
+    );
+});
 const createPost = asyncHandler(async (req, res) => {
   const { title, content, author, featured } = req.body;
   if (
@@ -30,7 +56,7 @@ const createPost = asyncHandler(async (req, res) => {
 
   return res
     .status(201)
-    .json(new ApiResponse(200, userForm, "Post created Successfully"));
+    .json(new ApiResponse(200, postForm, "Post created Successfully"));
 });
 
 const fetchPostId = asyncHandler(async (req, res) => {
@@ -72,4 +98,12 @@ const DeletePostId = asyncHandler(async (req, res) => {
     .status(201)
     .json(new ApiResponse(200, PostDeleteId, "user updated sucessfuly"));
 });
-export { getAllPost, createPost, fetchPostId, UpdatePostId, DeletePostId };
+export {
+  getAllPost,
+  createPost,
+  fetchPostId,
+  UpdatePostId,
+  DeletePostId,
+  getRecentPost,
+  getFeaturedPost,
+};
