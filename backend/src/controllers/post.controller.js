@@ -30,63 +30,46 @@ const createPost = asyncHandler(async (req, res) => {
 
   return res
     .status(201)
-    .json(new ApiResponse(200, userForm, "User created Successfully"));
+    .json(new ApiResponse(200, userForm, "Post created Successfully"));
 });
-const fetchUser = asyncHandler(async (req, res) => {
-  const userFetch = await UserFormModel.find({});
 
-  if (!userFetch || userFetch.length === 0) {
-    throw new ApiError(500, "Something went wrong while fetching the user");
-  }
-
-  return res
-    .status(201)
-    .json(new ApiResponse(200, userFetch, "User fetched Successfully"));
-});
-const fetchUserId = asyncHandler(async (req, res) => {
+const fetchPostId = asyncHandler(async (req, res) => {
   const { id } = req.params;
   if (!id) {
     throw new ApiError(400, "User ID is required");
   }
-  const userFetchId = await UserFormModel.findById(id);
-  if (!userFetchId) {
+  const postFetchId = await Post.findById(id);
+  if (!postFetchId) {
     throw new ApiError(404, "user not found");
   }
   return res
     .status(201)
-    .json(new ApiResponse(200, userFetchId, "user fetched sucessfuly"));
+    .json(new ApiResponse(200, postFetchId, "user fetched sucessfuly"));
 });
-const UpdateUserId = asyncHandler(async (req, res) => {
+const UpdatePostId = asyncHandler(async (req, res) => {
   const { id } = req.params;
   if (!id) {
-    throw new ApiError(400, "User ID is rARFequired");
+    throw new ApiError(400, "Post ID is rARFequired");
   }
-  const userUpdateId = await UserFormModel.findByIdAndUpdate(id, req.body);
-  if (!userUpdateId) {
+  const postUpdateId = await UserFormModel.findByIdAndUpdate(id, req.body);
+  if (!postUpdateId) {
     throw new ApiError(404, "user not found");
   }
   return res
     .status(201)
-    .json(new ApiResponse(200, userFetchId, "user updated sucessfuly"));
+    .json(new ApiResponse(200, postUpdateId, "post updated sucessfuly"));
 });
-const DeleteUserId = asyncHandler(async (req, res) => {
+const DeletePostId = asyncHandler(async (req, res) => {
   const { id } = req.params;
   if (!id) {
-    throw new ApiError(400, "User ID is required");
+    throw new ApiError(400, "post ID is required");
   }
-  const userDeleteId = await UserFormModel.findByIdAndDelete(id);
-  if (!userDeleteId) {
+  const PostDeleteId = await Post.findByIdAndDelete(id);
+  if (!PostDeleteId) {
     throw new ApiError(404, "user not found");
   }
   return res
     .status(201)
-    .json(new ApiResponse(200, userFetchId, "user updated sucessfuly"));
+    .json(new ApiResponse(200, PostDeleteId, "user updated sucessfuly"));
 });
-export {
-  getAllPost,
-  createUser,
-  fetchUser,
-  fetchUserId,
-  UpdateUserId,
-  DeleteUserId,
-};
+export { getAllPost, createPost, fetchPostId, UpdatePostId, DeletePostId };
