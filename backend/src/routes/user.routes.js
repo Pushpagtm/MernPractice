@@ -13,6 +13,15 @@ import {
   fetchUserId,
 } from "../controllers/userForm.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
+import {
+  DeletePostId,
+  UpdatePostId,
+  createPost,
+  fetchPostId,
+  getAllPost,
+  getFeaturedPost,
+  getRecentPost,
+} from "../controllers/post.controller.js";
 // import { upload } from "../middlewares/multer.middleware.js";
 const router = Router();
 
@@ -37,5 +46,12 @@ router.route("/get").get(fetchUser);
 router.route("/get/:id").get(fetchUserId);
 router.route("/update/:id").put(UpdateUserId);
 router.route("/delete/:id").delete(DeleteUserId);
+router.route("/createPost").post(createPost);
+router.route("/getAllPost").get(getAllPost);
+router.route("/get/:id").get(fetchPostId);
+router.route("/update/:id").put(UpdatePostId);
+router.route("/delete/:id").delete(DeletePostId);
+router.route("/recent").get(getRecentPost);
+router.route("/featured").get(getFeaturedPost);
 
 export default router;

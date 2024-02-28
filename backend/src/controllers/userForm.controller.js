@@ -53,7 +53,7 @@ const fetchUserId = asyncHandler(async (req, res) => {
 const UpdateUserId = asyncHandler(async (req, res) => {
   const { id } = req.params;
   if (!id) {
-    throw new ApiError(400, "User ID is required");
+    throw new ApiError(400, "User ID is rARFequired");
   }
   const userUpdateId = await UserFormModel.findByIdAndUpdate(id, req.body);
   if (!userUpdateId) {
