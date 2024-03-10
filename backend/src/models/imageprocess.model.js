@@ -5,4 +5,4 @@ const imageSchema = new mongoose.Schema({
   height: { type: Number, required: true },
   width: { type: Number, required: true },
 });
-export const Image = mongoose.model("Image", imageSchema);
+export const ImageForm = mongoose.model("Image", imageSchema);
