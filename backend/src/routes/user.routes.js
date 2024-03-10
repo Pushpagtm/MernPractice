@@ -22,6 +22,7 @@ import {
   getFeaturedPost,
   getRecentPost,
 } from "../controllers/post.controller.js";
+import { createImage } from "../controllers/imageproces.controller.js";
 // import { upload } from "../middlewares/multer.middleware.js";
 const router = Router();
 
@@ -53,5 +54,6 @@ router.route("/update/:id").put(UpdatePostId);
 router.route("/delete/:id").delete(DeletePostId);
 router.route("/recent").get(getRecentPost);
 router.route("/featured").get(getFeaturedPost);
+router.route("/imageProcess").get(createImage);
 
 export default router;
